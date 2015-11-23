@@ -31,25 +31,20 @@ int main()
 	int num_to_add=8; // highest number required for highest number input, 9 would require 17 rows and 17column, so 9+8=17
 	int mat[17][17];
 
-	printf("Enter the number between 2 and 9 and that too odd:");
+	printf("Enter the number between 1 and 9:");
 	scanf("%d",&input_number);
 
-	if(input_number%2==0)
+	if(input_number<0||input_number>9)
 	{
-		printf("Even number not allowed. Sorry about that.");
-	}
-
-	else if(input_number<3||input_number>9)
-	{
-		printf("\nPlease try a number in range 3-9");
+		printf("Please try a number in range 1-9\n");
 	}
 
 	else
 	{
 		while(highest_num!=input_number) // calculates the number to be added to form the formation for 3 we need to add 2 extra row
 		{
-			num_to_add=num_to_add-2;
-			highest_num=highest_num-2;
+			num_to_add=num_to_add-1;
+			highest_num=highest_num-1;
 		}
 		
 		index=input_number+num_to_add; //final row and column needed
@@ -86,25 +81,26 @@ int main()
 			}
 		}
 		
-	}
+	
 
-	row=i;
-	while((row+add)<index)
-	{
-		for(j=0;j<index;j++)
+		row=i;
+		while((row+add)<index)
 		{
-			mat[row+add][j]=mat[row-add][j]; //copying of upper matrix and lower matrix
+			for(j=0;j<index;j++)
+			{
+				mat[row+add][j]=mat[row-add][j]; //copying of upper matrix and lower matrix
+			}
+			add++;
 		}
-		add++;
-	}
-		
-	for(i=0;i<index;i++)
-	{
-		for(j=0;j<index;j++)
+			
+		for(i=0;i<index;i++)
 		{
-			printf("%d ",mat[i][j] );
+			for(j=0;j<index;j++)
+			{
+				printf("%d ",mat[i][j] );
+			}
+			printf("\n");
 		}
-		printf("\n");
-	}
+	}	
 	return 0;	
 }
